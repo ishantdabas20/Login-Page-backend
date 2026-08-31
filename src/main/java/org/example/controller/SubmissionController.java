@@ -19,10 +19,7 @@ public class SubmissionController {
         this.submissionService = submissionService;
     }
 
-    /**
-     * Student: list every assignment along with this student's own
-     * submission status (submitted or not, and the submitted file if so).
-     */
+
     @GetMapping("/my-assignments")
     public ResponseEntity<List<StudentAssignmentResponse>> getMyAssignments(
             Authentication authentication) {
@@ -34,9 +31,6 @@ public class SubmissionController {
         );
     }
 
-    /**
-     * Student: upload (or replace) their submission file for one assignment.
-     */
     @PostMapping(value = "/{assignmentId}", consumes = "multipart/form-data")
     public ResponseEntity<SubmissionResponse> submitAssignment(
             @PathVariable Long assignmentId,
@@ -53,10 +47,6 @@ public class SubmissionController {
                 .body(response);
     }
 
-    /**
-     * Faculty/Admin: see every student and whether they've completed
-     * a given assignment.
-     */
     @GetMapping("/assignment/{assignmentId}/status")
     public ResponseEntity<List<StudentSubmissionStatusResponse>> getSubmissionStatus(
             @PathVariable Long assignmentId) {

@@ -20,7 +20,7 @@ public class AssignmentController {
 
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<AssignmentResponse> createAssignment(
-            @ModelAttribute AssignmentRequest assignmentRequest,
+             AssignmentRequest assignmentRequest,
             Authentication authentication) {
 
         String username = authentication.getName();

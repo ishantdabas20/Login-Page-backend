@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 @Table(
         name = "submissions",
         uniqueConstraints = {
-                // A student can only have ONE submission per assignment.
-                // Re-submitting updates the existing row instead of creating a new one.
                 @UniqueConstraint(columnNames = {"assignment_id", "student_id"})
         }
 )
@@ -47,7 +45,6 @@ public class Submission {
 
     @PreUpdate
     protected void onUpdate() {
-        // Re-submission bumps the timestamp so faculty see the latest upload time
         submittedAt = LocalDateTime.now();
     }
 }
